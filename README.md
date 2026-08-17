@@ -1,70 +1,29 @@
-# YAML FUSE Filesystem
+# yaml-fuse
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI](https://github.com/shlomi-dr/yaml-fuse/workflows/CI/badge.svg)](https://github.com/shlomi-dr/yaml-fuse/actions/workflows/ci.yml)
-[![Quick Check](https://github.com/shlomi-dr/yaml-fuse/workflows/Quick%20Check/badge.svg)](https://github.com/shlomi-dr/yaml-fuse/actions/workflows/quick-check.yml)
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/yaml-fuse) [![KDE Eco](https://img.shields.io/badge/KDE%20Eco-certified-brightgreen?logo=kde&logoColor=white&style=flat-square)](https://eco.kde.org/) [![Blue Angel](https://img.shields.io/badge/Blue%20Angel-DE--UZ%20215-0055a4?style=flat-square)](https://www.blauer-engel.de/en/certification/criteria) [![Energy](https://api.green-coding.io/v1/ci/badge/get?repo=Interested-Deving-1896%2Fyaml-fuse&branch=main&workflow=eco-audit.yml)](https://metrics.green-coding.io/ci-index.html)
 
-A FUSE filesystem that maps YAML structure to a filesystem hierarchy. Each key in the YAML becomes a file or directory, and nested structures become subdirectories.
 
-## Features
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-- **YAML to Filesystem Mapping**: Maps YAML structure to filesystem hierarchy
-- **Multiple Output Formats**: Supports both YAML and JSON output formats
-- **List Support**: Handles YAML lists as directories with numeric keys
-- **Ephemeral Files**: Temporary files (starting with `.`) for scratch data
-- **Auto-reload**: Automatically reloads YAML when source file changes
-- **Format Preservation**: Preserves YAML formatting and structure
-- **Verbatim Text**: Preserves exact string content including newlines, spaces, and formatting
-- **Error Handling**: Robust error handling with logging
-- **Comprehensive Testing**: Extensive test suite with unit, integration, and functional tests
+## Architecture
 
-## Installation
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-### Quick Install (Recommended)
+## Install
 
-Use the automated installer script for the easiest setup:
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
 ```bash
-# Make the installer executable
-chmod +x install.sh
-
-# Run the installer
-./install.sh
+git clone https://github.com/Interested-Deving-1896/yaml-fuse.git
+cd yaml-fuse
 ```
-
-The installer will:
-- ✅ Check for Python 3 and pip3
-- ✅ Install Python dependencies from `requirements.txt`
-- ✅ Detect your operating system (macOS/Linux)
-- ✅ Guide you through FUSE installation with interactive prompts
-- ✅ Provide smart detection for macFUSE on macOS
-- ✅ Handle user group setup on Linux
-- ✅ Give you clear next steps and verification instructions
-
-### Manual Installation
-
-If you prefer manual installation:
-
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-2. On Linux, install FUSE:
-```bash
-sudo apt-get install fuse  # Ubuntu/Debian
-sudo yum install fuse      # CentOS/RHEL
-```
-
-3. On macOS, install FUSE:
-   - **Recommended**: Download from the official website at [https://github.com/macfuse/macfuse/wiki/Getting-Started](https://github.com/macfuse/macfuse/wiki/Getting-Started)
-   - **Note**: The official documentation recommends against using package managers. See [here](https://github.com/macfuse/macfuse/wiki/Getting-Started#:~:text=Please%20note%3A%20Although%20it%20is%20possible%20to%20install%20macFUSE%20using%20a%20package%20manager%20it%20is%20recommended%20to%20download%20the%20latest%20release%20from%20the%20macFUSE%20website%20instead.%20The%20macFUSE%20packages%20available%20through%20package%20managers%20are%20not%20managed%20by%20the%20macFUSE%20developers.) for details. You will also have to enable a kernel extension feature by rebooting your machine (one time).
-   - **Alternative**: Use Homebrew (may install outdated version):
-     ```bash
-     brew install macfuse
-     ```
 
 ## Usage
+
 
 ### Basic Usage
 
@@ -104,260 +63,66 @@ python3 tests.py --demo         # Demo functionality
 
 **Note**: The CI pipeline runs unit tests and demos automatically. Full integration tests with FUSE filesystem mounting are designed for local development and testing.
 
-## How It Works
+## Configuration
 
-### YAML Structure Mapping
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
 
-Given a YAML file like:
-```yaml
-database:
-  host: localhost
-  port: 5432
-  credentials:
-    username: admin
-    password: secret
-servers:
-  - name: web1
-    ip: 192.168.1.10
-  - name: web2
-    ip: 192.168.1.11
-applies_to:
-  - production
-  - staging
-  - development
-allowed_ips:
-  - 192.168.1.0/24
-  - 10.0.0.0/8
-  - 172.16.0.0/12
-features:
-  - authentication
-  - authorization
-  - logging
-  - monitoring
-  - backup
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/yaml-fuse`](https://github.com/Interested-Deving-1896/yaml-fuse) and mirrored through:
+
+```
+Interested-Deving-1896/yaml-fuse  ──►  OpenOS-Project-OSP/yaml-fuse  ──►  OpenOS-Project-Ecosystem-OOC/yaml-fuse
 ```
 
-The filesystem structure becomes:
-```
-/mount_point/
-├── database/
-│   ├── host
-│   ├── port
-│   └── credentials/
-│       ├── username
-│       └── password
-├── servers/
-│   ├── 0/
-│   │   ├── name
-│   │   └── ip
-│   └── 1/
-│       ├── name
-│       └── ip
-├── applies_to
-├── allowed_ips
-└── features
-```
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-### File Access Modes
+## Contributors
 
-- **Default**: Access values as-is
-- **YAML mode**: Append `.yaml` or `.yml` to get YAML-formatted output
-- **JSON mode**: Append `.json` to get JSON-formatted output
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-Examples:
-```bash
-# Read raw value
-cat /mnt/config/database/host
+## Origins
 
-# Read as YAML
-cat /mnt/config/database/credentials.yaml
+<!-- AI:start:origins -->
+_Original project — no upstream influences recorded._
+<!-- AI:end:origins -->
 
-# Read as JSON
-cat /mnt/config/database/credentials.json
+## Resources
 
-# Read list as YAML
-cat /mnt/config/applies_to.yaml
-# Output:
-# - production
-# - staging
-# - development
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
-# Read IP list
-cat /mnt/config/allowed_ips.yaml
-# Output:
-# - 192.168.1.0/24
-# - 10.0.0.0/8
-# - 172.16.0.0/12
+## Accessibility
 
-# Read features list
-cat /mnt/config/features.yaml
-# Output:
-# - authentication
-# - authorization
-# - logging
-# - monitoring
-# - backup
-```
+<!-- AI:start:accessibility -->
+This repo uses automated accessibility auditing via `check-accessibility.yml`.
 
-### Ephemeral Files
+Checks include: CODEOWNERS ownership coverage, README screen-reader compatibility,
+WCAG 2.1 AA HTML compliance, audio overview (espeak-ng), and Braille output (liblouis).
 
-Files starting with `.` are ephemeral and don't persist to the YAML file:
-```bash
-# Create temporary file
-echo "temp data" > /mnt/config/.temp_file
 
-# This file won't be saved to the YAML
-```
 
-## File Operations
 
-### Reading
-- Read files to get YAML values
-- Use `.yaml` or `.json` suffix for formatted output
-- Directories can be listed with `ls`
-
-### Writing
-- Write to files to update YAML values
-- Create new files to add new keys
-- Create directories to add nested structures
-
-### Creating/Deleting
-- `mkdir` creates new nested structures
-- `rm` removes keys from YAML
-- `touch` creates new files
-
-## Error Handling
-
-The tool includes comprehensive error handling:
-- Graceful handling of malformed YAML
-- File not found errors
-- Permission errors
-- Invalid path errors
-
-## Logging
-
-Enable debug logging with `--debug` flag:
-```bash
-python yaml-fuse.py config.yaml /mnt/config --debug
-```
-
-## Limitations
-
-- Only supports basic YAML types (dict, list, str, int, float, bool)
-- Complex YAML features like anchors/aliases are not supported
-- File permissions are simplified (644 for files, 755 for directories)
-- Concurrent access may have race conditions
-
-## Text Preservation
-
-The tool preserves exact string content including:
-- Newlines and line breaks
-- Leading and trailing spaces
-- Indentation and formatting
-- Empty lines
-- Special characters
-
-**String Output Format**: Strings are output as raw content. Block style (`|`) is only used for strings with multiple actual lines, not for strings with newline characters that are still single lines.
-
-This is especially useful for:
-- Documentation files
-- Code examples
-- Configuration templates
-- Markdown content
-
-## Troubleshooting
-
-### Permission Denied
-Make sure you have FUSE installed and your user is in the `fuse` group:
-```bash
-sudo usermod -a -G fuse $USER
-```
-
-### Mount Point Issues
-Ensure the mount point exists and is a directory:
-```bash
-mkdir -p /mnt/config
-```
-
-### YAML Parsing Errors
-Check your YAML file for syntax errors:
-```bash
-python -c "import yaml; yaml.safe_load(open('config.yaml'))"
-```
-
-## Development
-
-### Testing
-
-The project includes comprehensive testing with multiple test suites:
-
-#### Quick Test Commands
-```bash
-# Run unit tests (no FUSE required, CI/CD friendly)
-python3 tests.py --unit
-
-# Run integration tests (requires FUSE)
-sudo python3 tests.py --integration
-
-# Run all tests
-python3 tests.py --all
-
-# Run demo functionality
-python3 tests.py --demo
-```
-
-#### Test Coverage
-
-**Unit Tests** (`tests.py`):
-- YAML parsing logic and structure detection
-- Path resolution and filesystem operations
-- Cache invalidation and error handling
-- Content generation and block style dumper
-- Simulated filesystem operations
-
-**Integration Tests** (`tests.py`):
-- File creation, reading, updating, deletion
-- Directory creation and deletion
-- YAML structure parsing and validation
-- Cache invalidation for immediate updates
-- Concurrent access and error handling
-
-**Demo Tests** (`tests.py`):
-- YAML parsing demonstration
-- Cache invalidation demonstration
-- Filesystem operations demonstration
-
-#### Manual Testing
-```bash
-# Create test YAML
-echo "test: value" > test.yaml
-
-# Mount and test
-python yaml-fuse.py test.yaml /tmp/test &
-sleep 2
-ls /tmp/test
-cat /tmp/test/test
-umount /tmp/test
-```
-
-For detailed testing documentation, see [TESTING.md](TESTING.md).
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+Run the [Check Accessibility](https://github.com/Interested-Deving-1896/yaml-fuse/actions/workflows/check-accessibility.yml)
+workflow to generate the first report and accessibility artifacts.
+See [DOCS/accessibility.md](https://github.com/Interested-Deving-1896/yaml-fuse/blob/main/DOCS/accessibility.md) for the full reference.
+<!-- AI:end:accessibility -->
 
 ## License
 
-This project is open source and available under the MIT License. See [LICENSE](LICENSE) file for details.
-
-The MIT License is one of the most permissive open source licenses, allowing you to:
-- Use the software for any purpose
-- Modify the software
-- Distribute the software
-- Use it commercially
-- Sublicense it
-
-The only requirement is that you include the original copyright notice and license text in any copies or substantial portions of the software. 
+<!-- AI:start:license -->
+[MIT](https://github.com/Interested-Deving-1896/yaml-fuse/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
